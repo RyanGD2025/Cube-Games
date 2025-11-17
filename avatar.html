@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cube Games - avatar</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+    html, body {
+        height: 100%;
+        margin: 0;
+        background: #252525;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vh;
+    }
+    
+    .avatar-menu {
+        background: #202020;
+        width: 500px;
+        height: 750px;
+        position: absolute;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,1);
+    }
+    
+    button {
+        font-family: 'Work Sans', sans-serif;
+        background: #303030;
+        border: 5px solid #007dff;
+        border-radius: 7.5px;
+        color: white;
+        font-weight: bold;
+        position: absolute;
+    }
+    
+    input[type="color"] {
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+    }
+    
+    #selectorColor {
+        left: 5%;
+    }
+    
+    #selectorColor2 {
+        left: 25%;
+    }
+    
+    .cubeAcessory1 {
+        background: #00ffff;
+        width: 50px;
+        height: 50px;
+        border: 4px solid black;
+        border-radius: 2.5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h1 {
+        color: white;
+        font-family: 'Work Sans', sans-serif;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    #cubeAvatar {
+        width: 150px;
+        height: 150px;
+        background-color: #00ff00;
+        position: relative;
+        border: 4px solid black;
+        border-radius: 2.5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,1);
+        margin: 45px auto 0 auto;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="avatar-menu" id="menu">
+        <h1>Your Avatar</h1>
+        <input type="color" id="selectorColor" value="#00ff00" />
+        <input type="color" id="selectorColor2" value="#00ffff" />
+    </div>
+    <div class="cube" id="cubeAvatar">
+        <div class="cubeAcessory1" id="body1"></div>
+    </div>
+</div>
+<script>
+    const selectorColor = document.getElementById('selectorColor');
+    const selectorColor2 = document.getElementById('selectorColor2');
+    const cubeAvatar = document.getElementById('cubeAvatar');
+    const cubeAccessory1 = document.getElementById('body1');
+
+    function updateColors() {
+        cubeAvatar.style.backgroundColor = selectorColor.value;
+        cubeAccessory1.style.backgroundColor = selectorColor2.value;
+    }
+
+    selectorColor.addEventListener('input', () => {
+        localStorage.setItem('corPrincipal', selectorColor.value);
+        updateColors();
+    });
+
+    selectorColor2.addEventListener('input', () => {
+        localStorage.setItem('corAcessorio', selectorColor2.value);
+        updateColors();
+    });
+
+    window.onload = () => {
+        const corSalva = localStorage.getItem('corPrincipal');
+        const corAcessorioSalva = localStorage.getItem('corAcessorio');
+
+        if (corSalva) {
+            selectorColor.value = corSalva;
+        }
+        if (corAcessorioSalva) {
+            selectorColor2.value = corAcessorioSalva;
+        }
+        updateColors();
+    };
+</script>
+</body>
+</html>

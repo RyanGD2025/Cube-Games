@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cube Games - Enter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+        body {
+            background: #252525;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loginFrame {
+            background: #202020;
+            width: 900px;
+            height: 1500px;
+            border: 5px solid white;
+            border-radius: 16px;
+        }
+        
+        #username {
+            background: #151515;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Work Sans', sans-serif;
+        }
+        
+        #password {
+            background: #151515;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Work Sans', sans-serif;
+        }
+        
+        #showPassword {
+            background: transparent;
+            color: white;
+            font-family: 'Work Sans', sans-serif;
+            border: none;
+            margin-left: -62.5px;
+        }
+        
+        #e-mail {
+            color: white;
+            background: #151515;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+        }
+        
+        p {
+            color: white;
+        }
+        
+        #createAccount {
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(to left, rgb(0, 125, 255), rgb(0, 255, 255));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loginFrame">
+        <center><h1 style="color: white; font-family: 'Work Sans', sans-serif;">Create Account</h1></center>
+        <center><input type="text" id="username" placeholder="Your new username:"></center>
+        <center><input type="password" id="password" placeholder="Your password:"><button id="showPassword">show</button></center>
+        <center><input type="email" id="e-mail" placeholder="Your e-mail:"</center>
+        <center><button type="submit" id="createAccount">Create Account</button></center>
+        </div>
+    </div>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('showPassword');
+        
+        toggleButton.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            
+            passwordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'show' : 'hide';
+        });
+        
+        const createButton = document.getElementById('createAccount');
+        createButton.addEventListener('click', () => {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const email = document.getElementById('e-mail').value.trim();
+            
+            if (!username || !password || !email) {
+                alert('Please fill all fields.');
+                return;
+            }
+            
+            const emailPattern = /^[^s@]+@[^s@]+.[^s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            alert(`Username: ${username}
+            Password: ${password}
+            Email: ${email}
+            Account created success.`);
+        });
+    </script>
+</body>
+</html>
