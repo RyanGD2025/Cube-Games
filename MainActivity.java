@@ -32,3 +32,6 @@ public class GameLibrary {
 
     public native String getGameName();
 }
+GameLibrary gameLibrary = new GameLibrary();
+String name = gameLibrary.getGameName();
+Log.d("CubeGames", "Nome do Jogo: " + name);
