@@ -23,3 +23,12 @@ public class MainActivity extends AppCompatActivity {
         webView.loadUrl("file:///android_asset/home.html");
     }
 }
+package com.cubegames.app;
+
+public class GameLibrary {
+    static {
+        System.loadLibrary("game"); // nome da sua lib C++
+    }
+
+    public native String getGameName();
+}
